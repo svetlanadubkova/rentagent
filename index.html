@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rent shield | enterprise tenant intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;900&family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #00ff9d;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #000;
+            letter-spacing: -0.02em;
+            font-feature-settings: "ss01", "ss02", "cv01", "liga" 0;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            perspective: 1000px;
+        }
+
+        /* 3D Grid Background */
+        .animated-background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .grid-plane {
+            position: absolute;
+            inset: -100%;
+            background: 
+                linear-gradient(90deg, rgba(0,255,157,0.1) 1px, transparent 1px),
+                linear-gradient(rgba(0,255,157,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform-origin: center;
+            animation: gridMove 20s linear infinite;
+        }
+
+        .grid-plane:nth-child(1) {
+            transform: rotateX(60deg) translateZ(-100px);
+            opacity: 0.3;
+        }
+
+        .grid-plane:nth-child(2) {
+            transform: rotateX(60deg) translateZ(0);
+            opacity: 0.2;
+        }
+
+        .grid-plane:nth-child(3) {
+            transform: rotateX(60deg) translateZ(100px);
+            opacity: 0.1;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: rotateX(60deg) translateY(0);
+            }
+            100% {
+                transform: rotateX(60deg) translateY(50px);
+            }
+        }
+
+        /* Enhanced content layout */
+        .container {
+            position: relative;
+            z-index: 20;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Enhanced header */
+        .header {
+            text-align: center;
+            padding-top: 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00ff9d, #00cc7e, #00ffbb, #00ff9d, #7affb2, #00ff9d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            animation: cyber-glow-luxury 6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1),
+                       gradient-shift-luxury 12s infinite linear;
+            text-transform: lowercase;
+            filter: drop-shadow(0 0 15px rgba(0,255,157,0.2));
+        }
+
+        @keyframes gradient-shift-luxury {
+            0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+            50% { background-position: 100% 50%; filter: hue-rotate(15deg); }
+            100% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+        }
+
+        @keyframes cyber-glow-luxury {
+            0% { text-shadow: 0 0 15px rgba(0,255,157,0.3), 0 0 30px rgba(0,255,157,0.1), 0 0 45px rgba(0,255,157,0.05); }
+            50% { text-shadow: 0 0 20px rgba(0,255,157,0.4), 0 0 40px rgba(0,255,157,0.2), 0 0 60px rgba(0,255,157,0.1); }
+            100% { text-shadow: 0 0 25px rgba(0,255,157,0.5), 0 0 50px rgba(0,255,157,0.3), 0 0 75px rgba(0,255,157,0.15); }
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: #00cc7e;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+            text-transform: lowercase;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            opacity: 0.85;
+        }
+
+        .subtext {
+            font-size: 0.75rem;
+            color: #00855280;
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Enhanced features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            padding: 6rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .feature-card {
+            background: rgba(0, 255, 157, 0.02);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(0, 255, 157, 0.06);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.05);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(0, 255, 157, 0.04));
+            opacity: 0;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-card:hover {
+            background: rgba(0, 255, 157, 0.03);
+            border-color: rgba(0, 255, 157, 0.1);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 157, 0.1),
+                0 0 60px rgba(0, 255, 157, 0.08);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Enhanced CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #00ff9d, #00cc7e, #00ffbb, #00ff9d, #7affb2);
+            background-size: 300% 300%;
+            color: #000;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 157, 0.2),
+                0 0 40px rgba(0, 255, 157, 0.1),
+                0 0 60px rgba(0, 255, 157, 0.05);
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+            font-family: 'Inter', sans-serif;
+            animation: gradient-shift-luxury 12s infinite linear;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 157, 0.3),
+                0 0 50px rgba(0, 255, 157, 0.15),
+                0 0 70px rgba(0, 255, 157, 0.1);
+            letter-spacing: 0.08em;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background">
+        <div class="grid-plane"></div>
+        <div class="grid-plane"></div>
+        <div class="grid-plane"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">rent shield ai</h1>
+            <p class="subtitle">
+                advancing tenant advocacy through quantum-enhanced artificial intelligence and next-generation distributed ledger technology
+            </p>
+        </header>
+
+        <div class="features-grid">
+            <!-- Feature cards will be inserted here by JavaScript -->
+        </div>
+
+        <div style="text-align: center; padding-bottom: 6rem;">
+            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1NV2pfdEONQUBBFzDGCyn6NRkXJUY6Ok21KZYUoBusfizGx8Ri-qu4gMYxow3zXFH0ks-zlVMo" style="text-decoration: none;">
+                <button class="cta-button">
+                    schedule enterprise demo
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced features data
+        const features = [
+            {
+                title: "quantum guardian pro",
+                title: "Quantum Guardian Pro",
+                description: "Military-grade algorithmic compliance verification with real-time NYC housing regulation integration",
+                icon: "🛡️"
+            },
+            {
+                title: "Neural Negotiator Elite",
+                description: "State-of-the-art machine learning system delivering unparalleled negotiation strategies",
+                icon: "⚡"
+            },
+            {
+                title: "Quantum Ledger",
+                description: "Next-generation encryption ensuring perpetual communication authenticity and security",
+                icon: "💠"
+            },
+            {
+                title: "Smart Contracts Plus",
+                title: "Autonomous Contracts",
+                description: "Self-executing agreements powered by cutting-edge Arbitrum technology",
+                icon: "⚓"
+            }
+        ];
+
+        // Generate enhanced feature cards
+        const featuresGrid = document.querySelector('.features-grid');
+        features.forEach(feature => {
+            featuresGrid.innerHTML += `
+                <div class="feature-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1.5rem;">${feature.icon}</div>
+                    <h3 style="margin: 0 0 1rem; font-size: 1.2rem; font-family: 'Orbitron', sans-serif; color: #00ff9d; letter-spacing: -0.02em; text-shadow: 0 0 15px rgba(0,255,157,0.2);">${feature.title}</h3>
+                    <p style="margin: 0; color: #00cc7e; font-size: 0.9rem; line-height: 1.7; font-weight: 300; opacity: 0.9;">${feature.description}</p>
+                </div>
+            `;
+        });
+
+        // Enhanced 3D effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth - 0.5;
+            const mouseY = e.clientY / window.innerHeight - 0.5;
+            
+            const planes = document.querySelectorAll('.grid-plane');
+            planes.forEach((plane, index) => {
+                const depth = (index + 1) * 50;
+                plane.style.transform = `rotateX(60deg) translateZ(${depth}px) rotateY(${mouseX * 10}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
